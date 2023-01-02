@@ -30,6 +30,7 @@ const addItem = (state) => {
             amount: data.soluong,
             describe: data.mota,
             status: data.trangthai,
+            soldCount: 0,
           });
           resolve({
             errCode: 0,
