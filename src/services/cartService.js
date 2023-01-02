@@ -13,6 +13,8 @@ const orderProduct = (state) => {
       } else {
         let Item = await db.Item.findOne({
           where: { name: data.name },
+          raw: false,
+          nest: true,
         });
         if (Item) {
           resolve({

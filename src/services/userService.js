@@ -13,6 +13,8 @@ const registerAccountUser = (data) => {
       } else {
         let user = await db.User.findOne({
           where: { email: data.email },
+          raw: false,
+          nest: true,
         });
         if (user) {
           console.log("user >>>>>", user);

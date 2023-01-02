@@ -14,6 +14,8 @@ const addItem = (state) => {
       } else {
         let Item = await db.Item.findOne({
           where: { name: data.name },
+          raw: false,
+          nest: true,
         });
         if (Item) {
           resolve({
@@ -64,6 +66,8 @@ const getAllItem = () => {
             attributes: ["name"],
           },
         ],
+        raw: false,
+        nest: true,
       });
       if (!dataItem) {
         resolve({
@@ -109,6 +113,8 @@ const getOneItem = (data) => {
             attributes: ["name"],
           },
         ],
+        raw: false,
+        nest: true,
       });
       if (!dataItem) {
         resolve({
@@ -147,6 +153,8 @@ const editItem = (state) => {
       } else {
         let item = await db.Item.findOne({
           where: { id: data.id },
+          raw: false,
+          nest: true,
         });
         if (!item) {
           resolve({
@@ -197,6 +205,8 @@ const deleteItem = (Item) => {
       } else {
         let item = await db.Item.findOne({
           where: { id: data },
+          raw: false,
+          nest: true,
         });
         if (item) {
           await db.Item.destroy({
@@ -231,6 +241,8 @@ const findItem = (keySearch) => {
         where: {
           [Op.or]: [{ name: { [Op.like]: "%" + keySearch + "%" } }],
         },
+        raw: false,
+        nest: true,
         attributes: ["name", "image", "price", "id"],
         include: [
           {
