@@ -46,7 +46,6 @@ let initWebRoutes = (app) => {
   router.get("/api/getOneItem", itemController.getOneItem);
   // Search item
   router.get("/api/findItem", itemController.findItem);
-  router.get("/api/filTer", itemController.filTer);
 
   // Sửa Sản Phẩm
   router.put("/api/editItem", itemController.editItem);
