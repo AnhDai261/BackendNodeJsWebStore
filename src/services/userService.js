@@ -60,7 +60,7 @@ const loginUser = (data) => {
       } else {
         let checkemail = await db.User.findOne({
           where: { email: data.email },
-          attributes: ["email", "password", "fullName", "image"],
+          attributes: ["email", "password", "fullName", "image", "id"],
         });
 
         if (!checkemail) {
@@ -101,8 +101,36 @@ const loginUser = (data) => {
     }
   });
 };
+const getAllUser = () => {
+  return new Promise(async (resolve, reject) => {
+    try {
+      let res = await db.User.findAll({
+        attributes: {
+          exclude: ["password"],
+        },
+        raw: false,
+        nest: true,
+      });
+      if (res) {
+        resolve({
+          errCode: 0,
+          data: res,
+        });
+      } else {
+        resolve({
+          errCode: 1,
+          errMessage: "Đã có gì đó xảy ra!!!",
+        });
+      }
+    } catch (error) {
+      console.log(error);
+      reject(error);
+    }
+  });
+};
 
 module.exports = {
   registerAccountUser,
   loginUser,
+  getAllUser,
 };
